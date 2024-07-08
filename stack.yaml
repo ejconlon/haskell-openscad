@@ -1,0 +1,7 @@
+resolver: lts-22.28
+
+ghc-options:
+  "$everything": -haddock
+
+packages:
+- openscad
