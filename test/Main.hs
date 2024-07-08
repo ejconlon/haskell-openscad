@@ -13,10 +13,13 @@ assertError :: Show v => String -> Model v -> IO ()
 assertError err code = do
   res <- try (evaluate (deepseq (show code) ())) :: IO (Either ErrorCall ())
   case res of
-    Right _ -> assertFailure "Did not error"
+    Right _ -> assertFailure "Expected error"
     Left (ErrorCall err') -> err' @?= err
 
+sw :: String -> String
 sw = concat . words
+
+st :: Vector v => String -> String -> Model v -> TestTree
 st n e a = testCase n (sw (render a) @?= sw e)
 
 
