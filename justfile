@@ -1,5 +1,5 @@
 stack_build := "stack build --fast"
-src_dirs := "openscad"
+src_dirs := "src test"
 
 # No default tasks
 default:
@@ -45,6 +45,3 @@ lint:
 lint-apply:
   find {{ src_dirs }} -name '*.hs' | xargs -t -I % stack exec -- hlint % --refactor --refactor-options="--inplace"
 
-# Run the executable
-exe:
-  {{ stack_build }} --test --no-run-tests --exec openscad-exe
